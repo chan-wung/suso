@@ -3,7 +3,150 @@
   <head>
     <meta charset="utf-8">
     <title>수소 중심도시 춘천</title>    
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/swiper.min.css">
+    <link href='packages/core/main.css' rel='stylesheet' />
+    <link href='packages/daygrid/main.css' rel='stylesheet' />
+    <script src='packages/core/main.js'></script>
+    <script src='packages/interaction/main.js'></script>
+    <script src='packages/daygrid/main.js'></script>
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script>
+      let today = new Date();
+      let year = today.getFullYear();
+      let month = today.getMonth() + 1;
+      let date = today.getDate();
+      if ((month+"").length < 2) {       // 일이 한자리 수인 경우 앞에 0을 붙여주기 위해
+        month = "0" + month;
+      }
+      if ((date+"").length < 2) {       // 일이 한자리 수인 경우 앞에 0을 붙여주기 위해
+        date = "0" + date;
+      }
+      var getToday = year+"-"+month+"-"+date; // 오늘 날짜 (2017-02-07)
 
+      document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+          header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+          },
+          defaultDate: getToday,
+          navLinks: true, // can click day/week names to navigate views
+          businessHours: true, // display business hours
+          editable: true,
+          events: [
+            {
+              title: 'Business Lunch',
+              start: '2021-07-03T13:00:00',
+              constraint: 'businessHours'
+            },
+            {
+              title: 'Business Lunch',
+              start: '2021-07-23T13:00:00',
+              constraint: 'businessHours'
+            },
+            {
+              title: 'Meeting',
+              start: '2021-07-13T11:00:00',
+              constraint: 'availableForMeeting', // defined below
+              color: '#257e4a'
+            },
+            {
+              title: 'Conference',
+              start: '2021-07-18',
+              end: '2021-07-20'
+            },
+            {
+              title: 'Party',
+              start: '2021-07-29T20:00:00'
+            },
+
+            // areas where "Meeting" must be dropped
+            {
+              groupId: 'availableForMeeting',
+              start: '2021-07-11T10:00:00',
+              end: '2021-07-11T16:00:00',
+              rendering: 'background'
+            },
+            {
+              groupId: 'availableForMeeting',
+              start: '2021-07-13T10:00:00',
+              end: '2021-07-13T16:00:00',
+              rendering: 'background'
+            },
+
+
+            // red areas where no events can be dropped
+
+            {
+              start: '2021-07-24',
+              end: '2021-07-28',
+              overlap: false,
+              rendering: 'background',
+              color: '#ff9f89'
+            },
+            {
+              start: '2021-07-06',
+              end: '2021-07-08',
+              overlap: false,
+              rendering: 'background',
+              color: '#ff9f89'
+            }
+          ]
+        });
+
+        calendar.render();
+      });
+
+    </script>
+    <style>
+      .swiper-container {
+      /* width: 100%; */
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+
+    #calendar {
+        max-width: 900px;
+        margin: 10px auto 0;
+        font-size: 4px;
+      }
+
+    .fc-row.fc-widget-header{
+    border-right-width: 0px !important;
+    margin-right: 0px !important;
+    }
+    .fc-scroller.fc-day-grid-container{
+    height: auto !important; 
+    overflow: hidden !important;
+    }
+    </style>
   </head>
   <body>
     <!-- header -->
@@ -19,6 +162,13 @@
       <div class="header_box">
         <div class="container clearfix">
           <h1><a href="#!" class="tit_f"><img src="img/chuncheonlogo.gif" alt="춘천시 로고">수소중심도시 춘천</a></h1>
+ 
+            <div class="menu-trigger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
           <nav class="clearfix">
             <ul class="main_menu clearfix">
               <li><a href="#!">소개</a></li>
@@ -61,18 +211,45 @@
       </div>
     </header>
 
+    <!-- main -->
+    <main>
     <!-- slide(banner) -->
     <section class="slide_wrap">
       <div class="container clearfix">
-      <div class="banner">
-        <div class="banner_list">
-          <div class="banner_img">
+      <div class="banner swiper-container">
+        <div class="banner_list swiper-wrapper">
+          <div class="banner_img swiper-slide">
             <img src="img/banner.png" alt="배너">
           </div>
+          <div class="banner_img swiper-slide">
+            <img src="img/banner.png" alt="배너">
+          </div>
+          <div class="banner_img swiper-slide">
+            <img src="img/banner.png" alt="배너">
+          </div>          
         </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
       <div class="etc">
-        <img src="img/banner_etc.jpg" alt="배너">
+        <div class="etc_wrap">
+          <div class="etc_head">
+            <p><span class="fcy">춘천</span>의 수소통계</p>
+            </div>
+          <div class="etc_con">
+            <ul>
+            <li><ul class="etc_con_list clearfix"><li>수소충전소</li><li><span class="fcy fs">1</span>대</li></ul> </li>
+                <li><ul class="etc_con_list clearfix"><li>수소전기차</li><li><span class="fcy fs">361</span>대</li></ul> </li>
+                <li><ul class="etc_con_list clearfix"><li>수소관련기업</li><li><span class="fcy fs">14</span>대</li></ul> </li>
+                <li><ul class="etc_con_list clearfix"><li>수소</li><li><span class="fcy fs">1</span>대</li></ul> </li>
+            </ul>
+            </div>
+          <div class="etc_foot">       
+            <p>전국 수소충전소가 <span class="fcy">궁금</span>하다면? <span class="round">바로보기</span></p>
+            </div>
+          
+          </div>
       </div>
       </div>
     </section>
@@ -80,7 +257,7 @@
     <!-- quickmenu -->
     <section class="quick_menu">
       <div class="container">
-        <ul class="quick_menu_box clearfix">
+        <ul class="quick_menu_box">
           <li class="quick_menu_1"><a href="#!"><img src="img/h2_1.png" alt="수소경제 바로가기">수소경제</a></li>
           <li class="quick_menu_2"><a href="#!"><img src="img/h2_2.png" alt="국내수소산업 바로가기">국내수소산업</a></li>
           <li class="quick_menu_3"><a href="#!"><img src="img/h2_3.png" alt="국외수소산업 바로가기">국외수소산업</a></li>
@@ -97,7 +274,7 @@
         <div class="content_1 clearfix">
           <div class="notice">
             <ul class="tab_menu clearfix">
-              <li><a href="#!">공지사항</a></li>
+              <li><a href="#!" class="on">공지사항</a></li>
               <li><a href="#!">행사알림</a></li>
               <li><a href="#!">수소뉴스</a></li>
             </ul>
@@ -165,13 +342,17 @@
         <div class="video">
           <h2><img src="img/video.png" alt="" class="img_tit">관련영상</h2>
           <div class="video_wrap">
-
+            <div class="video_box">
+              <a href="#!">
+                <img src="img/sb_bg_01.jpg" alt="비디오 이미지">
+              </a>
+            </div>
           </div>
         </div>
       </div>
       </div>
     </section>
-
+  </main>
     <!-- footer -->
     <footer>
       <div class="footer_box container">
@@ -183,5 +364,91 @@
         </address>
       </div>
     </footer>
+    
+    <!-- Include plugin after Swiper -->
+  <script>
+    /* ========
+    Debugger plugin, simple demo plugin to console.log some of callbacks
+    ======== */
+    var myPlugin = {
+      name: 'debugger',
+      params: {
+        debugger: false,
+      },
+      on: {
+        init: function () {
+          if (!this.params.debugger) return;
+          console.log('init');
+        },
+        click: function (e) {
+          if (!this.params.debugger) return;
+          console.log('click');
+        },
+        tap: function (e) {
+          if (!this.params.debugger) return;
+          console.log('tap');
+        },
+        doubleTap: function (e) {
+          if (!this.params.debugger) return;
+          console.log('doubleTap');
+        },
+        sliderMove: function (e) {
+          if (!this.params.debugger) return;
+          console.log('sliderMove');
+        },
+        slideChange: function () {
+          if (!this.params.debugger) return;
+          console.log('slideChange', this.previousIndex, '->', this.activeIndex);
+        },
+        slideChangeTransitionStart: function () {
+          if (!this.params.debugger) return;
+          console.log('slideChangeTransitionStart');
+        },
+        slideChangeTransitionEnd: function () {
+          if (!this.params.debugger) return;
+          console.log('slideChangeTransitionEnd');
+        },
+        transitionStart: function () {
+          if (!this.params.debugger) return;
+          console.log('transitionStart');
+        },
+        transitionEnd: function () {
+          if (!this.params.debugger) return;
+          console.log('transitionEnd');
+        },
+        fromEdge: function () {
+          if (!this.params.debugger) return;
+          console.log('fromEdge');
+        },
+        reachBeginning: function () {
+          if (!this.params.debugger) return;
+          console.log('reachBeginning');
+        },
+        reachEnd: function () {
+          if (!this.params.debugger) return;
+          console.log('reachEnd');
+        },
+      },
+    };
+  </script>
+    <script>
+      // Install Plugin To Swiper
+    Swiper.use(myPlugin);
+
+// Init Swiper
+var swiper = new Swiper('.swiper-container', {
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  loop: true,
+  // Enable debugger
+  debugger: true,
+});
+    </script>
   </body>
 </html>
