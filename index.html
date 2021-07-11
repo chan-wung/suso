@@ -2,151 +2,25 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>수소 중심도시 춘천</title>    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수소 중심도시 춘천</title>
     <link rel="stylesheet" href="style/main.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/swiper.min.css">
     <link href='packages/core/main.css' rel='stylesheet' />
     <link href='packages/daygrid/main.css' rel='stylesheet' />
+    <link rel="stylesheet" href="style/schedule.css">
     <script src='packages/core/main.js'></script>
     <script src='packages/interaction/main.js'></script>
     <script src='packages/daygrid/main.js'></script>
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/swiper.min.js"></script>
-    <script>
-      let today = new Date();
-      let year = today.getFullYear();
-      let month = today.getMonth() + 1;
-      let date = today.getDate();
-      if ((month+"").length < 2) {       // 일이 한자리 수인 경우 앞에 0을 붙여주기 위해
-        month = "0" + month;
-      }
-      if ((date+"").length < 2) {       // 일이 한자리 수인 경우 앞에 0을 붙여주기 위해
-        date = "0" + date;
-      }
-      var getToday = year+"-"+month+"-"+date; // 오늘 날짜 (2017-02-07)
-
-      document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
-          header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-          },
-          defaultDate: getToday,
-          navLinks: true, // can click day/week names to navigate views
-          businessHours: true, // display business hours
-          editable: true,
-          events: [
-            {
-              title: 'Business Lunch',
-              start: '2021-07-03T13:00:00',
-              constraint: 'businessHours'
-            },
-            {
-              title: 'Business Lunch',
-              start: '2021-07-23T13:00:00',
-              constraint: 'businessHours'
-            },
-            {
-              title: 'Meeting',
-              start: '2021-07-13T11:00:00',
-              constraint: 'availableForMeeting', // defined below
-              color: '#257e4a'
-            },
-            {
-              title: 'Conference',
-              start: '2021-07-18',
-              end: '2021-07-20'
-            },
-            {
-              title: 'Party',
-              start: '2021-07-29T20:00:00'
-            },
-
-            // areas where "Meeting" must be dropped
-            {
-              groupId: 'availableForMeeting',
-              start: '2021-07-11T10:00:00',
-              end: '2021-07-11T16:00:00',
-              rendering: 'background'
-            },
-            {
-              groupId: 'availableForMeeting',
-              start: '2021-07-13T10:00:00',
-              end: '2021-07-13T16:00:00',
-              rendering: 'background'
-            },
+    <script src="js/schedule.js"></script>
 
 
-            // red areas where no events can be dropped
-
-            {
-              start: '2021-07-24',
-              end: '2021-07-28',
-              overlap: false,
-              rendering: 'background',
-              color: '#ff9f89'
-            },
-            {
-              start: '2021-07-06',
-              end: '2021-07-08',
-              overlap: false,
-              rendering: 'background',
-              color: '#ff9f89'
-            }
-          ]
-        });
-
-        calendar.render();
-      });
-
-    </script>
-    <style>
-      .swiper-container {
-      /* width: 100%; */
-      height: 100%;
-    }
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-
-    #calendar {
-        max-width: 900px;
-        margin: 10px auto 0;
-        font-size: 4px;
-      }
-
-    .fc-row.fc-widget-header{
-    border-right-width: 0px !important;
-    margin-right: 0px !important;
-    }
-    .fc-scroller.fc-day-grid-container{
-    height: auto !important; 
-    overflow: hidden !important;
-    }
-    </style>
   </head>
   <body>
     <!-- header -->
@@ -246,7 +120,7 @@
             </ul>
             </div>
           <div class="etc_foot">       
-            <p>전국 수소충전소가 <span class="fcy">궁금</span>하다면? <span class="round">바로보기</span></p>
+            <p>전국 수소충전소가 <span class="fcy">궁금</span>하다면? <br><span class="round">바로보기</span></p>
             </div>
           
           </div>
@@ -273,10 +147,10 @@
       <div class="container">
         <div class="content_1 clearfix">
           <div class="notice">
-            <ul class="tab_menu clearfix">
-              <li><a href="#!" class="on">공지사항</a></li>
-              <li><a href="#!">행사알림</a></li>
-              <li><a href="#!">수소뉴스</a></li>
+            <ul class="tab_menu">
+              <li><a href=".notice_wrap" class="on">공지사항</a></li>
+              <li><a href=".notification">행사알림</a></li>
+              <li><a href=".h2news">수소뉴스</a></li>
             </ul>
             <div class="block">
               <div class="notice_wrap">
@@ -287,6 +161,60 @@
                   <div class="notice_con">
                     <h2>제17회 국제 수소 & 연료전지 엑스포</h2>
                     <p>제17회 국제 수소 연료 전지 엑스포가 개최됩니다. 여러분의 많은 참여 바랍니다.</p>
+                  </div>
+                </div>
+                <div class="notice_desc">
+                  <table>
+                    <tr>
+                      <td>3/23 한국수소산업협회 정기총회 개최 안내</td><td>2021.03.25</td>
+                    </tr>
+                    <tr>
+                      <td>3/24 한국수소산업협회 정기총회 개최 안내</td><td>2021.03.24</td>
+                    </tr>
+                    <tr>
+                      <td>3/25 한국수소산업협회 정기총회 개최 안내<td>2021.03.25</td>
+                    </tr>
+                    <tr>
+                      <td>3/26 한국수소산업협회 정기총회 개최 안내</td><td>2021.03.26</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="notification">
+                <div class="notice_tit clearfix">
+                  <div class="notice_day">
+                    2021<br><span>04-12</span>
+                  </div>
+                  <div class="notice_con">
+                    <h2>제18회 국제 수소 엑스포</h2>
+                    <p>제18회 국제 수소 엑스포가 개최됩니다. 여러분의 많은 참여 바랍니다.</p>
+                  </div>
+                </div>
+                <div class="notice_desc">
+                  <table>
+                    <tr>
+                      <td>3/23 한국수소산업협회 정기총회 개최 안내</td><td>2021.03.23</td>
+                    </tr>
+                    <tr>
+                      <td>3/24 한국수소산업협회 정기총회 개최 안내</td><td>2021.03.24</td>
+                    </tr>
+                    <tr>
+                      <td>3/25 한국수소산업협회 정기총회 개최 안내<td>2021.03.25</td>
+                    </tr>
+                    <tr>
+                      <td>3/26 한국수소산업협회 정기총회 개최 안내</td><td>2021.03.26</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="h2news">
+                <div class="notice_tit clearfix">
+                  <div class="notice_day">
+                    2021<br><span>07-12</span>
+                  </div>
+                  <div class="notice_con">
+                    <h2>제19회 국제 연료전지 엑스포</h2>
+                    <p>제19회 국제 연료 전지 엑스포가 개최됩니다. 여러분의 많은 참여 바랍니다.</p>
                   </div>
                 </div>
                 <div class="notice_desc">
@@ -306,8 +234,6 @@
                   </table>
                 </div>
               </div>
-              <div class="notification"></div>
-              <div class="h2news"></div>
             </div>
           </div>
           <div class="schedule">
@@ -318,7 +244,7 @@
       <div class="content_2 clearfix">
         <div class="gallery">
           <h2><img src="img/gallery.png" alt="" class="img_tit">포토갤러리</h2>
-          <div class="gallery_wrap">
+          <div class="gallery_wrap clearfix">
             <div class="gallery_box">
               <a href="#!">
                 <div class="cont_img"></div>
