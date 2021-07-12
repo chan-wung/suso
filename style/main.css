@@ -166,6 +166,50 @@ a {
   object-fit: cover;
   max-height: 300px;
 }
+.slide_font {
+  position: absolute;
+  color: #fff;
+  font-size: 1.2rem;
+  top: 40%;
+  left: 10%;
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: -10%;
+    opacity: 0;
+  }
+
+  to {
+    margin-left: 0%;
+    opacity: 1;
+  }
+}
+.slide_font_point {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  top: 47%;
+  left: 9.5%;
+  font-size: 2.5rem;
+  animation-duration: 4s;
+  animation-name: slidein2;
+}
+
+@keyframes slidein2 {
+  from {
+    margin-top: 20%;
+    opacity: 0;
+    color: #666;
+  }
+
+  to {
+    margin-top: 0%;
+    opacity: 1;
+    color: #fff;
+  }
+}
 .etc {
   width: 25%;
   float: right;
@@ -755,6 +799,16 @@ footer {
     width: 32px;
     position: relative;
     top: 12px;
+  }
+  .slide_font {
+    font-size: 0.8rem;
+    top: 35%;
+    left: 10%;
+  }
+  .slide_font_point {
+    font-size: 1rem;
+    top: 50%;
+    left: 10%;
   }
   .tab_menu > li {
     padding-left: 10px;
